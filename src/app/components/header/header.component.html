@@ -1,0 +1,41 @@
+<header class="bg-white text-gray-800 shadow-md py-4 px-8 flex items-center justify-between">
+  <!-- Logo -->
+  <div class="text-2xl font-semibold">
+    Bookshelf
+  </div>
+
+  <!-- Navegação -->
+  <nav class="flex space-x-6">
+    <a href="#" class="hover:text-blue-500">Home</a>
+    <a href="#" class="hover:text-blue-500">Categorias</a>
+    <a href="#" class="hover:text-blue-500">Destaques</a>
+    <a href="#" class="hover:text-blue-500">Contato</a>
+    <a href="#" class="hover:text-blue-500">Carrinho</a>
+  </nav>
+
+  <!-- Barra de Pesquisa -->
+  <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+    <input 
+      type="text" 
+      placeholder="Buscar livros..."
+      class="px-4 py-2 outline-none text-sm"
+      [(ngModel)]="query"
+      (keyup.enter)="onSearch()"
+    />
+    <button class="bg-blue-500 text-white px-4 py-2" (click)="onSearch()">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M12.9 14.32a8 8 0 111.41-1.41l4.29 4.3a1 1 0 01-1.42 1.4l-4.3-4.29zm-1.4-8.3a6 6 0 100 12 6 6 0 000-12z" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- Resultados da Pesquisa -->
+<div *ngIf="books.length > 0" class="books-grid">
+  <div *ngFor="let book of books" class="book-card">
+    <img [src]="book.volumeInfo.imageLinks?.thumbnail" alt="{{ book.volumeInfo.title }}" />
+    <h2>{{ book.volumeInfo.title }}</h2>
+    <p>{{ book.volumeInfo.authors?.join(', ') }}</p>
+    <p>{{ book.volumeInfo.publishedDate }}</p>
+  </div>
+</div>

@@ -1,1 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.book-card-img {
+  height: 18rem;                /* Fixed height for image but responsive */
+  width: 100%;                  /* Stretches to fit the card width */
+  object-fit: contain;
+}
+
+.add-to-cart-btn {
+  @apply flex items-center justify-center w-[3rem] h-[3rem] border-2 rounded-full transition-all duration-200 ease-in-out;
+  border-color: #e80700;
+  background-color: #e80700;
+}
+
+.add-to-cart-btn:hover {
+  @apply scale-110;
+  background-color: #e80700; 
+  border-color: #e80700;
+}
+
+.cart-icon {
+  @apply w-[1.5rem] h-[1.5rem] object-contain;
+}
+
+.grid-box {
+  width: 60rem;                  /* Full width to be responsive */
+  display: flex;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 0.5rem;        /* Responsive border-radius */
+  overflow: hidden;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.book-card-content {
+  flex-grow: 1;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 0.5rem 1rem;         /* Adjust padding for responsiveness */
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.view-details-btn {
+  background-color: #ffffff;
+  border: 0.125rem solid #fff;
+  color: #861c10;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.view-details-btn:hover {
+  background-color: #f2d8d5;
+  color: #861c10;
+  transform: scale(1.05);
+}

@@ -1,0 +1,44 @@
+<section class="py-10">
+  <div class="container mx-auto px-4">
+    <div *ngIf="book$ | async as book; else loading">
+      <div class="flex flex-col md:flex-row gap-10">
+        <div class="flex-shrink-0">
+          <img [src]="book.volumeInfo.imageLinks?.thumbnail || 'assets/images/default-cover.jpg'" alt="Capa do Livro"
+            class="rounded-lg shadow-lg w-full md:w-[300px]">
+        </div>
+        <div class="flex-grow">
+          <h2 class="text-3xl font-bold mb-4">{{ book.volumeInfo.title }}</h2>
+          <p class="text-gray-700 text-lg mb-2">
+            <strong>Autores:</strong> {{ book.volumeInfo.authors?.join(', ') || 'Autor desconhecido' }}
+          </p>
+          <p class="text-gray-700 text-lg mb-2">
+            <strong>Editora:</strong> {{ book.volumeInfo.publisher || 'Não informado' }}
+          </p>
+          <p class="text-gray-700 text-lg mb-4">
+            <strong>Publicado em:</strong> {{ book.volumeInfo.publishedDate || 'Data não informada' }}
+          </p>
+
+          <p class="text-gray-900 mb-4">{{ book.volumeInfo.description || 'Descrição não disponível.' }}</p>
+
+          <p class="text-xl font-bold mb-4" *ngIf="book.saleInfo.retailPrice">
+            <strong>Preço:</strong>
+            {{ book.saleInfo.retailPrice.currencyCode | currencySymbol: book.saleInfo.retailPrice.currencyCode }} {{
+            book.saleInfo.retailPrice.amount | number: '1.2-2' }}
+          </p>
+          <p class="text-xl font-bold mb-4" *ngIf="!book.saleInfo.retailPrice">
+            Preço não disponível
+          </p>
+          <div class="flex gap-4">
+            <button class="add-to-cart-btn">
+              <img alt="Ícone do Carrinho" class="cart-icon" [src]="'assets/images/shopping-cart.png'">
+            </button>
+            <button class="view-details-btn" (click)="goBack()">Voltar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #loading>
+      <p class="text-center text-gray-500">Carregando detalhes do livro...</p>
+    </ng-template>
+  </div>
+</section>

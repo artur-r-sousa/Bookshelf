@@ -1,0 +1,24 @@
+<section class="py-10">
+  <h2 class="text-3xl text-center font-bold mb-6">Destaques de Livros</h2>
+  <div class="container mx-auto px-4 grid-box">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div *ngFor="let book of books" class="book-card flex flex-col justify-between">
+        <img [src]="book.thumbnail || 'assets/images/default-cover.jpg'" alt="Capa do Livro" class="w-full h-60 object-cover book-card-img">
+        <div class="p-4 book-card-content flex-grow">
+          <h3 class="text-xl font-semibold truncate">{{ book.title }}</h3>
+          <p class="text-gray-700">{{ book.authors || 'Autor desconhecido' }}</p>
+          <p class="text-lg font-bold mt-2" *ngIf="book.price">{{ book.currency | currencySymbol: book.price }}</p>
+          <p class="text-lg font-bold mt-2" *ngIf="!book.price">Estoque não disponível</p>
+        </div>
+        <div class="flex justify-between mt-4 btn-row">
+          <button class="add-to-cart-btn">
+            <img alt="Ícone do Carrinho" class="cart-icon" [src]="'assets/images/shopping-cart.png'">
+          </button>
+          <button class="view-details-btn" [routerLink]="['/details', book.id]">Ver Detalhes</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
