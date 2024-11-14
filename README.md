@@ -23,7 +23,7 @@ O projeto Bookshelf começa como uma aplicação monolítica e será gradualment
 🚀 Roadmap de Evolução
 
 A seguir está o cronograma de novas features que serão implementadas para evolução do projeto.
-🗓️ Versão v1.0 (concluido)
+🗓️ Versão v1.0
 
     Funcionalidade: Sistema de Autenticação
         Descrição: Implementação de login e registro de usuários.
