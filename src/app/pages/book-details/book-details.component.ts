@@ -27,9 +27,7 @@ export class BookDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.bookId = params['id'];
-      console.log('Livro ID:', this.bookId);
-
-      // Chamada ao serviço para obter detalhes do livro
+      
       this.book$ = this.bookService.getBookDetails(this.bookId).pipe(
         map(response => response)
       );

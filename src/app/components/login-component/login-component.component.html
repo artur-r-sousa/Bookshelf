@@ -1,0 +1,13 @@
+
+<form (ngSubmit)="onSubmit()">
+  <input [(ngModel)]="username" name="username" placeholder="Usuário" required />
+  <input [(ngModel)]="password" name="password" type="password" placeholder="Senha" required />
+ 
+  <button type="submit">{{ isLogin ? 'Entrar' : 'Cadastrar' }}</button>
+</form>
+<div id="google-signin-btn">
+</div>
+
+<p (click)="toggleForm()">
+  {{ isLogin ? 'Ainda não tem uma conta? Cadastre-se' : 'Já tem uma conta? Entre' }}
+</p>

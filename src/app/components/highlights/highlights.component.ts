@@ -18,7 +18,6 @@ export class HighlightsComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookService.getBestsellers().subscribe((response) => {
-      console.log(response.items[0].id)
       this.books = response.items.map((item: any) => ({
         id: item.id,
         title: item.volumeInfo.title,

@@ -1,32 +1,41 @@
-import { Component } from '@angular/core';
-import { BookService } from '../../services/BookService/book.service';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/AuthService/auth-service.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
   standalone: true,
-  imports: [FormsModule, CommonModule, HttpClientModule]
+  imports: [FormsModule, CommonModule]
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   query: string = '';
   books: any[] = [];
-  searchQuery: string = '';
+  isLoggedIn: boolean = false;
 
-  constructor(private router: Router, private bookService: BookService) { }
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.isLoggedIn = this.authService.isAuthenticated();  
+  }
 
   onSearch(): void {
-    console.log('teste 222')
     if (this.query) {
-      console.log('teste 2')
       this.router.navigate(['/search-results'], { queryParams: { query: this.query } });
-      console.log('teste 3')
     }
   }
-  
+
+  login(): void {
+    this.router.navigate(['/login']);  
+  }
+
+  logout(): void {
+    this.authService.logout();  
+    this.isLoggedIn = false;    
+    this.router.navigate(['/']);  
+  }
 }
 

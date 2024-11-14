@@ -1,0 +1,16 @@
+section {
+  padding: 20px;
+}
+
+/* Ajuste do border-radius através de variável CSS */
+:root {
+  --border-radius: 20px;
+}
+
+.relative > div {
+  border-radius: var(--border-radius);
+}
+
+h2 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}

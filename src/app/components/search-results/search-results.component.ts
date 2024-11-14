@@ -31,7 +31,6 @@ export class SearchResultsComponent implements OnInit {
       this.bookService.searchBooks(this.query).subscribe({
         next: (response) => {
           this.books = response.items || [];
-          console.log(this.books); 
         },
         error: (err) => {
           console.error('Error fetching books', err);

@@ -25,9 +25,7 @@ export class CategoryExpandedComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.categoryId = +params['id']; 
-      console.log('Categoria ID:', this.categoryId);
-  
-    
+      
       this.books$ = this.categoryService.getBooksByCategory(this.categoryId, 10).pipe(
         map(response => response.items) 
       );
