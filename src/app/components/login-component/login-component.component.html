@@ -1,13 +1,32 @@
-
-<form (ngSubmit)="onSubmit()">
-  <input [(ngModel)]="username" name="username" placeholder="Usuário" required />
-  <input [(ngModel)]="password" name="password" type="password" placeholder="Senha" required />
- 
-  <button type="submit">{{ isLogin ? 'Entrar' : 'Cadastrar' }}</button>
-</form>
-<div id="google-signin-btn">
+<div *ngIf="isRecoveringPassword; else loginForm">
+  <h2>Recuperar Senha</h2>
+  <form (ngSubmit)="onRecoverPassword()">
+    <input [(ngModel)]="email" name="email" type="email" placeholder="Digite seu e-mail" required />
+    <button type="submit">Enviar</button>
+    <button type="button" (click)="toggleForm()">Voltar</button>
+  </form>
 </div>
 
-<p (click)="toggleForm()">
-  {{ isLogin ? 'Ainda não tem uma conta? Cadastre-se' : 'Já tem uma conta? Entre' }}
-</p>
+<ng-template #loginForm>
+  <form (ngSubmit)="onSubmit()">
+    <input [(ngModel)]="username" name="username" placeholder="Usuário" required />
+    <input [(ngModel)]="password" name="password" type="password" placeholder="Senha" required />
+    <input [(ngModel)]="email" name="email" type="email" placeholder="E-mail" required />
+    <button type="submit">{{ isLogin ? 'Entrar' : 'Cadastrar' }}</button>
+  </form>
+  <div id="google-signin-btn"></div>   
+  <p (click)="toggleForm()">
+    {{ isLogin ? 'Ainda não tem uma conta? Cadastre-se' : 'Já tem uma conta? Entre' }}
+  </p>
+  <p (click)="goToRecoverPassword()" class="link">Esqueceu sua senha?</p>
+</ng-template>
+
+<div *ngIf="confirmationMessage" class="confirmation-message">
+  {{ confirmationMessage }}
+</div>
+
+<div *ngIf="isLoading" class="loading-spinner">
+  Processando, por favor aguarde...
+</div>
+
+

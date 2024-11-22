@@ -11,7 +11,7 @@ export class AuthService {
   isLoggedIn: boolean = false;
   constructor(private http: HttpClient) {}
 
-  login(credentials: { username: string; password: string }): Observable<{ token: string }> {
+  login(credentials: { username: string; password: string, email: string }): Observable<{ token: string }> {
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, credentials);
   }
 
@@ -39,11 +39,25 @@ export class AuthService {
     return payload;  
   }
 
-  register(credentials: { username: string; password: string }): Observable<any> {
+  register(credentials: { username: string; password: string, email: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, credentials); 
   }
 
   sendGoogleToken(idToken: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/google`,  idToken);
+    return this.http.post(`${this.apiUrl}/google`,  idToken, {
+      observe: 'response',
+      responseType: 'json'
+    });
+  }
+
+  recoverPassword(credentials: { email: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/recover-password`, credentials, {
+      observe: 'response',
+      responseType: 'json'
+    }); 
+  }
+
+  updatePassword(credentials: { newPassword: string; token: string; }) {
+    return this.http.post(`${this.apiUrl}/update-password`, credentials);
   }
 }

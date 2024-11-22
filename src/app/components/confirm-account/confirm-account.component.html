@@ -1,0 +1,7 @@
+<div *ngIf="isLoading">Verificando a confirmação de cadastro...</div>
+<div *ngIf="isError">
+    <p>Houve um problema na ativação da conta.</p>
+</div>
+<div *ngIf="!isLoading && !isError">
+  <p>Cadastro efetuado. Você pode fazer login agora.</p>
+</div>
