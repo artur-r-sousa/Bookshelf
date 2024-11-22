@@ -33,6 +33,7 @@ A seguir está o cronograma de novas features que serão implementadas para evol
         Objetivo: Permitir que usuários se autentiquem e mantenham sessões seguras na aplicação.
 
 🗓️ Versão v2.0
+(Concluido)
 
     Funcionalidade: Sistema de Envio de E-mails
         Descrição: Implementação de envio de e-mails para confirmação de cadastro, recuperação de senha e notificações de pedidos.
